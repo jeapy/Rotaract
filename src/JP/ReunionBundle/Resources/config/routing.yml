@@ -1,0 +1,40 @@
+reunion_index:
+    path:     /
+    defaults: { _controller: "JPReunionBundle:Reunion:index" }
+    methods:  GET
+
+reunion_show:
+    path:     /{id}/show
+    defaults: { _controller: "JPReunionBundle:Reunion:show" }
+    methods:  GET
+
+reunion_new:
+    path:     /new
+    defaults: { _controller: "JPReunionBundle:Reunion:new" }
+    methods:  [GET, POST]
+
+reunion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JPReunionBundle:Reunion:edit" }
+    methods:  [GET, POST]
+
+reunion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JPReunionBundle:Reunion:delete" }
+    methods:  DELETE
+
+reunion_participer:
+    path:     /{id}/participer
+    defaults: { _controller: "JPReunionBundle:Reunion:participer" }
+    methods:  [GET, POST]
+
+
+presence_index:
+    path:     /presence
+    defaults: { _controller: "JPReunionBundle:Reunion:presenceIndex" }
+    methods:  GET
+
+presence_show:
+    path:     /presence/{id}/show
+    defaults: { _controller: "JPReunionBundle:Reunion:presenceShow" }
+    methods:  GET

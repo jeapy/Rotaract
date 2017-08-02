@@ -1,0 +1,141 @@
+  {% extends "JPProfilBundle:Default:index.html.twig" %}
+  {% block profil %} 
+          <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Modifier un Visiteur du club</h3>
+                  <div class="box-tools">                    
+                      <div class="btn-group">
+                        <a href="{{ path('jp_profil_visiteur_show', { 'id': profil.id }) }}" class="btn btn-sm btn-default"><i class="fa fa-ban"></i> Annuler</a>
+                      
+                        <a href="{{ path('jp_profil_visiteur') }}" class="btn btn-sm btn-info"><i class="fa fa-undo "></i> Retour à la liste</a>
+                      </div>                                     
+                  </div>
+                </div>
+                <div class="box-body">
+                   {{ form_start(edit_form) }}              
+
+                  {{ form_errors(edit_form) }}
+
+        <fieldset>
+        <legend>Etat civile</legend>
+               <div class="row">
+                  <div class="col-xs-4">
+                      {{ form_errors(edit_form.nom) }}
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>                       
+                        {{ form_widget(edit_form.nom, {'attr': {'class': 'form-control', 'placeholder':'Nom'}}) }}
+                      </div>
+                    </div>
+                   <div class="col-xs-8">   
+                      {{ form_errors(edit_form.prenom) }}    
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>                       
+                        {{ form_widget(edit_form.prenom, {'attr': {'class': 'form-control', 'placeholder':'Prenom'}}) }}
+                      </div>
+                    </div>
+                </div>
+
+                 <br>
+
+              
+        </fieldset>
+            <br>
+ <fieldset>
+        <legend>Coordonnées</legend>
+                    
+               {#    <div class="input-inline">
+                              {{ form(form.numero) }}                              
+                             <br>
+                         <a href="#" id="add_numero" class="btn btn-default">Ajouter un numero</a>                  
+                    </div>
+                    <br>
+
+                    <div class="input-inline">
+                              {{ form(form.mail) }}                              
+                             <br>
+                         <a href="#" id="add_mail" class="btn btn-default">Ajouter un mail</a>                  
+                    </div>
+                    <br>
+                   #}
+                      
+       </fieldset>        
+                      <br>
+ <fieldset>
+        <legend>Vie Professionnelle</legend>
+ <div class="row">
+                
+                <div class="col-md-6">
+                      {{ form_errors(edit_form.profession) }}
+                       <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.profession, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                      </div>
+                </div>
+               
+              </div>   
+   </fieldset>
+
+
+<br>
+
+
+   <fieldset>
+  <legend>Vie Rotaractienne</legend>
+                    
+                    {{ form_label(edit_form.fonction) }}
+                    <div class="row">                       
+                          <div class="col-md-6">
+                              {{ form_errors(edit_form.fonction.organe) }}
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                                {{ form_widget(edit_form.fonction.organe, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                             </div>
+                          </div>
+                        <div class="col-md-6">
+                            {{ form_errors(edit_form.fonction.designation) }}
+                         <div class="input-group">
+                             <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                              {{ form_widget(edit_form.fonction.designation, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                           </div>
+                        </div>                    
+                    </div>
+
+       <br>   
+
+                             {{ form_label(edit_form.club) }}     
+                           <div class="row">                                         
+                          <div class="col-md-6">
+                              {{ form_errors(edit_form.club) }}
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                                {{ form_widget(edit_form.club, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                             </div>
+                          </div>
+                                         
+                    </div>
+   </fieldset>
+
+
+             <br>      
+                     {# 
+                           <div class="input-inline ">
+                              {{ form(form.disponibilite) }}                              
+                             <br>
+                         <a href="#" id="add_dispo" class="btn btn-default btn-sm">Ajouter une disponibilite</a>                
+                    </div>
+                            
+                             <br>         #}                 
+                                          
+                          
+
+                 {{ form_end(edit_form) }}
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+    {% endblock %}
+
+
+
+ 
+
+

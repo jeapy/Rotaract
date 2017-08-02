@@ -1,0 +1,138 @@
+{% extends "JPReunionBundle:Default:index.html.twig" %}
+  {% block reunion %} 
+                       {% set Rdate = reunion.datereunion|date('YmdHi') %}
+                      {% set Ndate = 'now'|date('YmdHi') %}
+                      {% set RdateP = reunion.datereunion|date_modify("+1 hours")|date('YmdHi') %}
+
+  <div class="pull-right" style="width: 130px;">
+                      <a href="{{ path('reunion_index') }}" class="btn btn-sm btn-info"><i class="fa fa-undo "></i> Retour à la liste</a>
+                    </div>
+             <hr>
+<!-- timeline time label -->
+ <ul class="timeline">
+                
+                <li class="time-label">                      
+                {% if Ndate  < Rdate  %}                 
+                      <span class="bg-blue">{{ reunion.datereunion|date('d-M-Y') }} </span>
+                  {% elseif Ndate > RdateP  %}    
+                      <span class="bg-red">{{ reunion.datereunion|date('d-M-Y') }}  </span>
+                  {% else %}                   
+                      <span class="bg-green">{{ reunion.datereunion|date('d-M-Y') }}</span>
+                  {% endif %}
+                </li>
+                <!-- /.timeline-label -->
+
+                <!-- timeline item -->
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-users bg-blue"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> {{ reunion.datereunion|date('H:i') }}
+
+
+
+                           {% if Ndate  < Rdate  %}                 
+                             <span class="label label-primary">A venir</span>
+                          {% elseif Ndate > RdateP  %}    
+                               <span class="label label-danger">Achevé</span>
+                          {% else %}                   
+                              <span class="label label-success">En cour</span>
+                          {% endif %}
+
+                        </span>
+                           
+
+
+                        <h3 class="timeline-header">Type de reunion : <a href="#">{{ reunion.typereunion}}</a>  </h3>
+                      
+                        <div class="timeline-body">
+                            {{reunion.objet}}
+                             <hr>
+                            Lieu : <span class="label label-success">{{ reunion.lieu}}  </span>
+                        </div>
+
+                        <div class="timeline-footer text-right">
+                            <a href="{{ path('reunion_edit',{'id': reunion.id})}}" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Modifier </a>
+                            
+                            
+                           
+                        </div>
+                    </div>
+                </li>
+                 
+                <li>
+                    <i class="fa fa-file-text bg-green"></i>
+                      <div class="timeline-item">
+                         <div class="box-header with-border">
+                  <h3 class="box-title"><b>Liste des participants</b></h3>
+                  
+                </div>
+                 {% if not reunion.profil.empty %}
+                  <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tr>
+                      <th>Nom Prenom</th>
+                       <th>Profession</th>
+                      <th>Type de profil</th>                      
+                     
+                     
+                      
+                    </tr>
+                     {% for profil in reunion.profil %}        
+                    <tr>
+                      <td>{{profil.nom~ " "~profil.prenom}}</td>                     
+                                       
+                     
+                      <td>{{profil.profession.designation}}</td>
+
+                     {% if profil.profiltype == 1 %}
+                      <td><span class="label label-success">MEMBRE</span></td>
+                      <td> 
+                         <a class="btn btn-info btn-sm" href="{{ path('jp_profil_member_show', { 'id': profil.id }) }}"><i class="fa fa-eye"></i></a></td>
+                      {% elseif profil.profiltype == 2 %}
+                      <td><span class="label label-primary">POSTULANT</span></td>
+                      <td> 
+                         <a class="btn btn-info btn-sm" href="{{ path('jp_profil_member_show', { 'id': profil.id }) }}"><i class="fa fa-eye"></i></a></td>
+                      {% elseif profil.profiltype == 3 %}
+                      <td><span class="label label-warning">VISITEUR</span></td>
+                      <td> 
+                         <a class="btn btn-info btn-sm" href="{{ path('jp_profil_visiteur_show', { 'id': profil.id }) }}"><i class="fa fa-eye"></i></a></td>
+                      {% else  %}
+                      <td><span class="label label-danger">INVITE</span></td>
+                      <td> 
+                         <a class="btn btn-info btn-sm" href="{{ path('jp_profil_invite_show', { 'id': profil.id }) }}"><i class="fa fa-eye"></i></a></td>
+                      {% endif %} 
+                      
+                      
+                    </tr>
+                     {% endfor %}
+                    
+                  </table>
+                </div><!-- /.box-body -->
+                 {% endif %}
+                  <div class="timeline-footer text-right">
+                
+                           {% if Ndate  < Rdate  %}                 
+                              <a href="{{ path('reunion_participer',{'id': reunion.id})}}" class="btn btn-info btn-xs"> <i class="fa fa-plus"></i> Mette à jour la liste</a>
+                          {% elseif Ndate > RdateP  %}    
+                               <span class="label label-danger">Achevé</span>
+                          {% else %}                   
+                             <a href="{{ path('reunion_participer',{'id': reunion.id})}}" class="btn btn-info btn-xs"> <i class="fa fa-plus"></i> Mette à jour la liste</a>
+                          {% endif %}
+
+                        </div>
+                  
+                </div><!-- /.box-body -->
+                 </li>
+ 
+                <!-- END timeline item -->
+               {% block participant %}  {% endblock %}
+
+
+
+                  <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-ban bg-red"></i>
+                </li>
+            </ul>
+        {% endblock %}

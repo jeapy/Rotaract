@@ -1,0 +1,24 @@
+profil_member_formation_index:
+    path:     /
+    defaults: { _controller: "JPProfilBundle:Formation:index" }
+    methods:  GET
+
+profil_member_formation_show:
+    path:     /{id}/show
+    defaults: { _controller: "JPProfilBundle:Formation:show" }
+    methods:  GET
+
+profil_member_formation_new:
+    path:     /new
+    defaults: { _controller: "JPProfilBundle:Formation:new" }
+    methods:  [GET, POST]
+
+profil_member_formation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JPProfilBundle:Formation:edit" }
+    methods:  [GET, POST]
+
+profil_member_formation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JPProfilBundle:Formation:delete" }
+    methods:  DELETE

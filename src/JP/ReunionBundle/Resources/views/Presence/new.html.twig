@@ -1,0 +1,75 @@
+ {% extends "JPReunionBundle:Default:index.html.twig" %}
+  {% block reunion %} 
+          <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Ajouter une Reunion</h3>
+                  <div class="box-tools"> 
+                      <div class="box-tools">                    
+                          <div class="btn-group"> 
+
+                            <a href="{{ path('reunion_index') }}" class="btn btn-sm btn-default"><i class="fa fa-ban "></i> Annuler</a>
+                          </div>                                     
+                      </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                   {{ form_start(form) }}              
+
+                  {{ form_errors(form) }}
+
+               <div class="row">
+                  <div class="col-xs-4">
+                    {{ form_label(form.datereunion) }}
+                      {{ form_errors(form.datereunion) }}
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>                       
+                        {{ form_widget(form.datereunion, {'attr': {'class': 'form-control datetimepicker', 'placeholder':''}}) }}
+                      </div>
+                    </div>
+                   <div class="col-xs-8">   
+                    {{ form_label(form.lieu) }}
+                      {{ form_errors(form.lieu) }}    
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>                       
+                        {{ form_widget(form.lieu, {'attr': {'class': 'form-control', 'placeholder':'Lieu'}}) }}
+                      </div>
+                    </div>
+                </div>
+
+                 <br>
+
+
+ <div class="row">
+   <div class="col-md-6">
+                     {{ form_label(form.typereunion) }}
+                      {{ form_errors(form.typereunion) }}
+                       <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(form.typereunion, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                      </div>
+                </div>
+                   
+                <div class="col-md-6">
+                {{ form_label(form.objet) }}
+                      {{ form_errors(form.objet) }}
+                       <div class="input-group">                      
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(form.objet, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                      </div>
+                </div>
+               
+              
+              </div>   
+  
+ <br>
+                         
+                      
+                             
+                 {{ form_end(form) }}
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+
+    {% endblock %}
+
+

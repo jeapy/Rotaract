@@ -1,0 +1,8 @@
+services:
+#    jp_profil.example:
+#        class: JP\ProfilBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    jp_profil.myservices:
+        class: JP\ProfilBundle\MyServices\MemberCount
+        arguments: [ "@doctrine.orm.entity_manager" , "@service_container" ]

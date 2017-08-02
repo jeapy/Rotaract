@@ -1,0 +1,269 @@
+
+
+      {% extends "JPProfilBundle:Default:index.html.twig" %}
+  {% block profil %} 
+          <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Modifier un Membre ou Postulant du club</h3>
+                    <div class="box-tools">                    
+                      <div class="btn-group">
+                        <a href="{{ path('jp_profil_member_show', { 'id': profil.id }) }}" class="btn btn-sm btn-default"><i class="fa fa-ban"></i> Annuler</a>
+                      
+                        <a href="{{ path('jp_profil_homepage') }}" class="btn btn-sm btn-info"><i class="fa fa-undo "></i> Retour à la liste</a>
+                      </div>                                     
+                  </div>
+                </div>
+                <div class="box-body">
+                   {{ form_start(edit_form) }}              
+
+                  {{ form_errors(edit_form) }}
+
+        <fieldset>
+        <legend>Etat civile</legend>
+               <div class="row">
+                  <div class="col-xs-4">
+                      {{ form_errors(edit_form.nom) }}
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>                       
+                        {{ form_widget(edit_form.nom, {'attr': {'class': 'form-control', 'placeholder':'Nom'}}) }}
+                      </div>
+                    </div>
+                   <div class="col-xs-8">   
+                      {{ form_errors(edit_form.prenom) }}    
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>                       
+                        {{ form_widget(edit_form.prenom, {'attr': {'class': 'form-control', 'placeholder':'Prenom'}}) }}
+                      </div>
+                    </div>
+                </div>
+
+                 <br>
+
+               <div class="row">
+                <div class="col-md-6">
+                      {{ form_label(edit_form.datenaiss) }}
+                      {{ form_errors(edit_form.datenaiss) }}
+                      <div class="input-group">                  
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>                       
+                        {{ form_widget(edit_form.datenaiss, {'attr': {'class': 'form-control js-datepicker', 'placeholder':'Date de Naissance'}}) }}
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+               
+                  {{ form_label(edit_form.file) }}
+                      {{ form_errors(edit_form.file) }}
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-file-o"></i></span>                       
+                        {{ form_widget(edit_form.file, {'attr': {'class': 'form-control', 'placeholder':'Photo'}}) }}
+                      </div>
+                  </div>
+                 
+                </div>
+        </fieldset>
+            <br>
+ <fieldset>
+        <legend>Coordonnées</legend>
+                       {{ form_label(edit_form.domicile) }}
+                        {{ form_errors(edit_form.domicile) }}
+                      <div class="input-group">                     
+                        <span class="input-group-addon"><i class="fa fa-home"></i></span>                       
+                        {{ form_widget(edit_form.domicile, {'attr': {'class': 'form-control', 'placeholder':'Domicile'}}) }}
+                      </div>
+                    <br>
+               {#    <div class="input-inline">
+                              {{ form(form.numero) }}                              
+                             <br>
+                         <a href="#" id="add_numero" class="btn btn-default">Ajouter un numero</a>                  
+                    </div>
+                    <br>
+
+                    <div class="input-inline">
+                              {{ form(form.mail) }}                              
+                             <br>
+                         <a href="#" id="add_mail" class="btn btn-default">Ajouter un mail</a>                  
+                    </div>
+                    <br>
+                   #}
+                      
+                      {{ form_label(edit_form.moyencommunication) }}
+                  <div class="row">
+                        <div class="col-xs-6">
+                           {{ form_errors(edit_form.moyencommunication.designation) }}
+                         <div class="input-group">                           
+                            <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                           {{ form_widget(edit_form.moyencommunication.designation, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          {{ form_errors(edit_form.moyencommunication.valeur) }}
+                          <div class="input-group">                             
+                            <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                            {{ form_widget(edit_form.moyencommunication.valeur, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                          </div>
+                        </div>                    
+                    </div>
+       </fieldset>        
+                      <br>
+ <fieldset>
+        <legend>Vie Professionnelle</legend>
+ <div class="row">
+                <div class="col-md-4">
+                      {{ form_errors(edit_form.entrecole) }}
+                       <div class="input-group">                      
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.entrecole, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                      </div>
+                </div>
+                <div class="col-md-4">
+                      {{ form_errors(edit_form.profession) }}
+                       <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.profession, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                      </div>
+                </div>
+                <div class="col-md-4">
+                      {{ form_errors(edit_form.formation) }}
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.formation, {'attr': {'class': 'form-control', 'placeholder':'Formation de base'}}) }}
+                      </div>
+                 </div>
+              </div>   
+   </fieldset>
+
+
+<br>
+
+
+   <fieldset>
+  <legend>Vie Rotaractienne</legend>
+        <div class="row">
+                <div class="col-md-6">       
+                      {{ form_label(edit_form.datintro) }}
+                      {{ form_errors(edit_form.datintro) }}
+                      <div class="input-group">                                          
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>                       
+                        {{ form_widget(edit_form.datintro, {'attr': {'class': 'form-control js-datepicker', 'placeholder':''}}) }}
+                      </div>
+
+                </div>
+
+                <div class="col-md-6">       
+                      {{ form_label(edit_form.profiltype) }}
+                      {{ form_errors(edit_form.profiltype) }}
+                      <div class="input-group">                                          
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.profiltype, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                      </div>
+
+                </div>
+          </div>
+
+          <div class="row">  
+                <div class="col-md-6"> 
+                    {{ form_label(edit_form.postprecedent) }}
+                      {{ form_errors(edit_form.postprecedent) }}
+                         <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.postprecedent, {'attr': {'class': 'form-control', 'placeholder':'Poste Précedent'}}) }}
+                      </div>
+                </div>
+                  <div class="col-md-6"> 
+                   {{ form_label(edit_form.postactuel) }}
+                   {{ form_errors(edit_form.postactuel) }}
+                         <div class="input-group">                     
+                        <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                        {{ form_widget(edit_form.postactuel, {'attr': {'class': 'form-control', 'placeholder':'Poste Actuel'}}) }}
+                      </div>
+                    </div>
+          </div>
+
+                     <br>
+
+                      {{ form_label(edit_form.fonction) }}
+                    <div class="row">                      
+                          <div class="col-md-6">
+                              {{ form_errors(edit_form.fonction.organe) }}
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                                {{ form_widget(edit_form.fonction.organe, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                             </div>
+                          </div>
+                        <div class="col-md-6">
+                            {{ form_errors(edit_form.fonction.designation) }}
+                         <div class="input-group">
+                             <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                              {{ form_widget(edit_form.fonction.designation, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                           </div>
+                        </div>                    
+                    </div>
+   </fieldset>
+
+
+   <br>
+
+
+<fieldset>
+        <legend>Vie Familliale</legend>
+                  <div class="row">
+                          <div class="col-md-6">
+                          {{ form_label(edit_form.conjoint.nomprenom) }} 
+                              {{ form_errors(edit_form.conjoint.nomprenom) }}
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-o"></i></span>                       
+                                {{ form_widget(edit_form.conjoint.nomprenom, {'attr': {'class': 'form-control', 'placeholder':'Entreprise/Ecole'}}) }}
+                             </div>
+                          </div>
+                        <div class="col-md-3">
+                         {{ form_label(edit_form.conjoint.datenaissance) }}
+                            {{ form_errors(edit_form.conjoint.datenaissance) }}
+                         <div class="input-group">
+                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>                       
+                              {{ form_widget(edit_form.conjoint.datenaissance, {'attr': {'class': 'form-control js-datepicker', 'placeholder':''}}) }}
+                           </div>
+                        </div> 
+                        <div class="col-md-3">
+                        {{ form_label(edit_form.conjoint.contact) }} 
+                            {{ form_errors(edit_form.conjoint.contact) }} 
+                         <div class="input-group">
+                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>                       
+                              {{ form_widget(edit_form.conjoint.contact, {'attr': {'class': 'form-control', 'placeholder':''}}) }}
+                           </div>
+                        </div>                    
+                    </div>
+
+
+                     <br>
+
+               
+                {#     <div class="input-inline ">
+                              {{ form(form.enfant) }}                              
+                             <br>
+                         <a href="#" id="add_enfant" class="btn btn-default btn-sm">Ajouter un enfant</a>                
+                    </div>
+                           #}
+             </fieldset>
+
+             <br>      
+                     {# 
+                           <div class="input-inline ">
+                              {{ form(form.disponibilite) }}                              
+                             <br>
+                         <a href="#" id="add_dispo" class="btn btn-default btn-sm">Ajouter une disponibilite</a>                
+                    </div>
+                            
+                             <br>         #}                 
+                                          
+                          
+
+                 {{ form_end(edit_form) }}
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+    {% endblock %}
+
+
+
+ 
+
+

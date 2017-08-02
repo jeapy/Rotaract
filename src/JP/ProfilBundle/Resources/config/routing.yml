@@ -1,0 +1,80 @@
+jp_profil_homepage:
+    path:     /
+    defaults: { _controller: JPProfilBundle:Default:index }
+
+
+
+jp_profil_visiteur:
+    path:     /visiteur
+    defaults: { _controller: JPProfilBundle:Default:visiteur }
+
+jp_profil_visiteur_add:
+    path:     /visiteur/addVisiteur
+    defaults: { _controller: JPProfilBundle:Default:addVisiteur }
+
+jp_profil_visiteur_show:
+    path:     /visiteur/{id}/show
+    defaults: { _controller: JPProfilBundle:Default:showVisiteur }
+    methods:  GET
+
+jp_profil_visiteur_edit:
+    path:     /visiteur/{id}/edit
+    defaults: { _controller: JPProfilBundle:Default:editVisiteur }
+    methods:  [GET, POST]
+
+jp_profil_visiteur_delete:
+    path:     /visiteur/{id}/delete
+    defaults: { _controller: JPProfilBundle:Default:deleteVisiteur }
+    methods:  DELETE
+
+
+
+
+
+jp_profil_invite:
+    path:     /invite
+    defaults: { _controller: JPProfilBundle:Default:invite }
+
+jp_profil_invite_add:
+    path:     /invite/addInvite
+    defaults: { _controller: JPProfilBundle:Default:addInvite }
+
+
+jp_profil_invite_show:
+    path:     /invite/{id}/show
+    defaults: { _controller: JPProfilBundle:Default:showInvite }
+    methods:  GET
+
+jp_profil_invite_edit:
+    path:     /invite/{id}/edit
+    defaults: { _controller: JPProfilBundle:Default:editInvite }
+    methods:  [GET, POST]
+
+jp_profil_invite_delete:
+    path:     /invite/{id}/delete
+    defaults: { _controller: JPProfilBundle:Default:deleteInvite }
+    methods:  DELETE
+
+
+
+
+
+jp_profil_member_add:
+    path:     /member/addMember
+    defaults: { _controller: JPProfilBundle:Default:addMember }
+    methods:  [GET, POST]
+
+jp_profil_member_show:
+    path:     /member/{id}/show
+    defaults: { _controller: JPProfilBundle:Default:showMember }
+    methods:  GET
+
+jp_profil_member_edit:
+    path:     /member/{id}/edit
+    defaults: { _controller: JPProfilBundle:Default:editMember }
+    methods:  [GET, POST]
+
+jp_profil_member_delete:
+    path:     /member/{id}/delete
+    defaults: { _controller: JPProfilBundle:Default:deleteMember }
+    methods:  DELETE

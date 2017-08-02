@@ -1,0 +1,86 @@
+
+ {% extends "JPReunionBundle:Default:index.html.twig" %}
+  {% block reunion %} 
+
+                      
+                     
+<div class="pull-right" style="width: 130px;">
+                     <a href="{{path('reunion_new')}}" class="btn btn-block btn-social btn-github btn-flat "><i class="fa fa-users"></i> AJOUTER</a>
+                    </div>
+             <hr>
+
+              <ul class="timeline">
+                 {% for reunion in reunions  %}    
+
+                      {% set Rdate = reunion.datereunion|date('YmdHi') %}
+                      {% set Ndate = 'now'|date('YmdHi') %}
+                      {% set RdateP = reunion.datereunion|date_modify("+1 hours")|date('YmdHi') %}
+
+                <li class="time-label">                   
+
+                  {% if Ndate  < Rdate  %}                 
+                      <span class="bg-blue">{{ reunion.datereunion|date('d-M-Y') }} </span>
+                  {% elseif Ndate > RdateP  %}    
+                      <span class="bg-red">{{ reunion.datereunion|date('d-M-Y') }}  </span>
+                  {% else %}                   
+                      <span class="bg-green">{{ reunion.datereunion|date('d-M-Y') }}</span>
+                  {% endif %}
+
+                </li>
+                <!-- /.timeline-label -->
+
+                <!-- timeline item -->
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-users bg-blue"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> {{ reunion.datereunion|date('H:i') }}
+                        
+                           {% if Ndate  < Rdate  %}                 
+                             <span class="label label-primary">A venir</span>
+                          {% elseif Ndate > RdateP  %}    
+                               <span class="label label-danger">Achevé</span>
+                          {% else %}                   
+                              <span class="label label-success">En cour</span>
+                          {% endif %}
+
+                        </span>
+                           
+
+
+                        <h3 class="timeline-header">Type de reunion : <a href="#">{{ reunion.typereunion}}</a>  </h3>
+                      
+                        <div class="timeline-body">
+                            {{reunion.objet}}
+                             <hr>
+                            Lieu : <span class="label label-success">{{ reunion.lieu}}  </span>
+                        </div>
+
+                        <div class="timeline-footer text-right">
+
+                             {% if Ndate  < Rdate  %}                 
+                             <a href="{{ path('reunion_edit', { 'id': reunion.id }) }} " class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i>Modifier</a>
+                            <a href="{{ path('reunion_show', { 'id': reunion.id }) }} " class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>Voir</a>
+                          {% elseif Ndate > RdateP  %}    
+                               <a href="{{ path('reunion_show', { 'id': reunion.id }) }} " class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>Voir</a>
+                          {% else %}                   
+                              <a href="{{ path('reunion_edit', { 'id': reunion.id }) }} " class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i>Modifier</a>
+                            <a href="{{ path('reunion_show', { 'id': reunion.id }) }} " class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>Voir</a>
+                          {% endif %}
+
+                           
+                        </div>
+                    </div>
+                </li>
+                 {% endfor %}
+                <!-- END timeline item -->
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-ban bg-red"></i>
+                </li>
+
+            </ul>
+
+                
+
+     {% endblock %}

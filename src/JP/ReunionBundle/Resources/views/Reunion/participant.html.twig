@@ -1,0 +1,47 @@
+ {% extends "JPReunionBundle:Reunion:show.html.twig" %}
+                  {% block participant %}
+
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-users bg-orange"></i>
+
+                     <div class="timeline-item">
+                          <div class="box-header with-border">
+                                <h3 class="box-title"><b>Choix des participants</b></h3>
+                                <div class="pull-right" >
+                      <a href="{{ path('reunion_show',{'id': reunion.id}) }}" class="btn btn-sm btn-default"><i class="fa fa-undo "></i> Annuler</a>
+                    </div>
+                              </div>
+                               <div class="box-body">
+                                         <div class="row">
+                                          <div class="col-xs-12">
+                                                {{ form_start(formM ) }}              
+
+                                                 {{ form_errors(formM) }}
+                                              
+                                              <div class="form-group">
+                                                            
+                                                          {{ form_widget(formM.profil, {'attr': {'class': 'form-control','size':'25'}}) }}
+                                                          
+                                                         
+                                                          {{ form_errors(formM.profil) }}
+                                                      
+                                              </div>
+                                              <input type="submit" value="Mise à jour" class="btn btn-success btn-xs"/> 
+                                                     {{ form_end(formM) }}
+                                            </div>                                   
+                                </div>
+                              
+                              </div>
+
+                          
+
+                        <div class="timeline-footer text-right">
+                            
+                           
+                           
+                        </div>
+                      </div><!-- /.nav-tabs-custom -->
+            
+                 </li>
+  {% endblock %}

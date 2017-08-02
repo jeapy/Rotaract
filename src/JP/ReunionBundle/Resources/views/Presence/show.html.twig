@@ -1,0 +1,169 @@
+{% extends "JPReunionBundle:Default:index.html.twig" %}
+  {% block reunion %} 
+  <div class="pull-right" style="width: 130px;">
+                      <a href="{{ path('reunion_index') }}" class="btn btn-sm btn-info"><i class="fa fa-undo "></i> Retour à la liste</a>
+                    </div>
+             <hr>
+<!-- timeline time label -->
+ <ul class="timeline">
+                
+                <li class="time-label">
+                    
+                     {% if reunion.datereunion|date('d-M-Y H:i') > 'now'|date('d-M-Y H:i') %}                   
+                        <span class="bg-blue">{{ reunion.datereunion|date('d-M-Y ') }}  </span>
+              {% elseif reunion.datereunion|date_modify("+3 hours")|date('d-M-Y H:i') < 'now'|date('d-M-Y H:i') %}          <span class="bg-red">{{ reunion.datereunion|date('d-M-Y ') }}  </span>
+              {% else %}                   
+                        <span class="bg-green">{{ reunion.datereunion|date('d-M-Y ') }}  </span>
+              {% endif %}
+                </li>
+                <!-- /.timeline-label -->
+
+                <!-- timeline item -->
+                <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-users bg-blue"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> {{ reunion.datereunion|date('H:i') }}
+
+            {% if reunion.datereunion|date('d-M-Y H:i') > 'now'|date('d-M-Y H:i') %}
+                        <span class="label label-primary">A venir</span>
+              {% elseif reunion.datereunion|date_modify("+3 hours")|date('d-M-Y H:i') < 'now'|date('d-M-Y H:i') %}
+                        <span class="label label-danger">Achevé</span>
+              {% else %}
+                        <span class="label label-success">En cour</span>
+              {% endif %}
+
+                        </span>
+                           
+
+
+                        <h3 class="timeline-header">Type de reunion : <a href="#">{{ reunion.typereunion}}</a>  </h3>
+                      
+                        <div class="timeline-body">
+                            {{reunion.objet}}
+                             <hr>
+                            Lieu : <span class="label label-success">{{ reunion.lieu}}  </span>
+                        </div>
+
+                        <div class="timeline-footer text-right">
+                            <a href="{{ path('reunion_edit',{'id': reunion.id})}}" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Modifier </a>
+                            
+                            
+                           
+                        </div>
+                    </div>
+                </li>
+                 
+                <li>
+                    <i class="fa fa-file-text bg-green"></i>
+                      <div class="timeline-item">
+                         <div class="box-header with-border">
+                  <h3 class="box-title"><b>Liste des participants</b></h3>
+                  
+                </div>
+                 {% if not reunion.profil.empty %}
+                  <div class="box-body table-responsive no-padding">
+
+                  <table class="table table-hover">
+                    <tr>
+                      <th>Nom Prenom</th>                      
+                      <th>Type de profil</th> 
+                        <th></th>   
+                    </tr>
+
+                     {% for profil in reunion.profil %}  
+                                   
+                    <tr>
+                        <td>{{profil.nom~ " "~profil.prenom}}</td> 
+
+                     {% if profil.profiltype == 1 %}
+                        <td><span class="label label-success">MEMBRE</span></td>                     
+                      {% elseif profil.profiltype == 2 %}
+                        <td><span class="label label-primary">POSTULANT</span></td>                     
+                      {% elseif profil.profiltype == 3 %}
+                        <td><span class="label label-warning">VISITEUR</span></td>                     
+                      {% else  %}
+                        <td><span class="label label-danger">INVITE</span></td>                     
+                      {% endif %} 
+                        
+                         {% for prez in profil.presence  %}  
+                                {% if  prez.etat is null %}                                         
+                                  <td> - </td> 
+                                
+                                {% else %}
+                                    <td> 
+                           <a class="btn btn-success btn-sm" href="{{ path('jp_profil_invite_show', { 'id': profil.id }) }}"><i class="fa fa-eye"></i>Present</a>
+
+                           <a class="btn btn-danger btn-sm" href="{{ path('jp_profil_invite_show', { 'id': profil.id }) }}"><i class="fa fa-eye"></i>Absent</a>
+                         </td> 
+                                {% endif %} 
+                        {% endfor %} 
+
+
+                    </tr>
+                          {% endfor %} 
+                                
+                  </table>
+                </div><!-- /.box-body -->
+            {% endif %}
+
+                 
+                  
+                </div><!-- /.box-body -->
+                 </li>
+ 
+                <li>
+                    <i class="fa fa-file-text bg-green"></i>
+                      <div class="timeline-item">
+                         <div class="box-header with-border">
+                  <h3 class="box-title"><b>Liste de presence</b></h3>
+                  
+                </div>
+                 {% if not reunion.profil.empty %}
+                  <div class="box-body table-responsive no-padding">
+
+                  <table class="table table-hover">
+                    <tr>
+                      <th>Nom Prenom</th>                      
+                      <th>Type de profil</th>  
+                       <th>Presence</th> 
+                        <th></th>   
+                    </tr>
+
+                     {% for profil in reunion.profil %}  
+                             {% for prez in profil.presence  %}              
+                    <tr>
+                        <td>{{profil.nom~ " "~profil.prenom}}</td> 
+
+                     {% if profil.profiltype == 1 %}
+                        <td><span class="label label-success">MEMBRE</span></td>                     
+                      {% elseif profil.profiltype == 2 %}
+                        <td><span class="label label-primary">POSTULANT</span></td>                     
+                      {% elseif profil.profiltype == 3 %}
+                        <td><span class="label label-warning">VISITEUR</span></td>                     
+                      {% else  %}
+                        <td><span class="label label-danger">INVITE</span></td>                     
+                      {% endif %} 
+                            
+                        <td>{{prez.etat}}</td> 
+                    
+
+                    </tr>
+                          {% endfor %} 
+                     {% endfor %}    
+                                 
+                  </table>
+                </div><!-- /.box-body -->
+            {% endif %}
+
+                 
+                  
+                </div><!-- /.box-body -->
+                 </li>
+
+                  <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-ban bg-red"></i>
+                </li>
+            </ul>
+        {% endblock %}

@@ -1,0 +1,24 @@
+profil_member_organe_index:
+    path:     /
+    defaults: { _controller: "JPProfilBundle:Organe:index" }
+    methods:  GET
+
+profil_member_organe_show:
+    path:     /{id}/show
+    defaults: { _controller: "JPProfilBundle:Organe:show" }
+    methods:  GET
+
+profil_member_organe_new:
+    path:     /new
+    defaults: { _controller: "JPProfilBundle:Organe:new" }
+    methods:  [GET, POST]
+
+profil_member_organe_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JPProfilBundle:Organe:edit" }
+    methods:  [GET, POST]
+
+profil_member_organe_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JPProfilBundle:Organe:delete" }
+    methods:  DELETE

@@ -1,0 +1,42 @@
+
+  {% extends "JPConfigurationBundle:Default:index.html.twig" %}
+  {% block profil %} 
+ <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">LISTE DES FORMATIONS</h3>
+                  
+                  <hr>
+                  
+                   <div class="pull-right" style="width: 130px;">
+                     <a href="{{ path('profil_member_profession_new') }}" class="btn btn-block btn-social btn-github btn-flat "><i class="fa fa-plus"></i> AJOUTER</a>
+                    </div>
+                </div><!-- /.box-header -->
+
+                <div class="box-body">
+                  <table class="table table-bordered">
+                    <tr>
+                       <th>Id</th>
+                        <th>Designation</th>
+                        <th>Actions</th>
+                    </tr>
+                    
+                       {% for profession in professions %}
+                                <tr>
+                                    <td><a href="{{ path('profil_member_profession_show', { 'id': profession.id }) }}">{{ profession.id }}</a></td>
+                                    <td>{{ profession.designation }}</td>
+                                    <td> 
+
+                                        <a href="{{ path('profil_member_profession_show', { 'id': profession.id }) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ path('profil_member_profession_edit', { 'id': profession.id }) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>                                       
+                                           
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                
+                    
+                  </table>
+                </div><!-- /.box-body -->
+                
+              </div><!-- /. box -->
+
+     {% endblock %}

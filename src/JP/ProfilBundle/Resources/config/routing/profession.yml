@@ -1,0 +1,24 @@
+profil_member_profession_index:
+    path:     /
+    defaults: { _controller: "JPProfilBundle:Profession:index" }
+    methods:  GET
+
+profil_member_profession_show:
+    path:     /{id}/show
+    defaults: { _controller: "JPProfilBundle:Profession:show" }
+    methods:  GET
+
+profil_member_profession_new:
+    path:     /new
+    defaults: { _controller: "JPProfilBundle:Profession:new" }
+    methods:  [GET, POST]
+
+profil_member_profession_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JPProfilBundle:Profession:edit" }
+    methods:  [GET, POST]
+
+profil_member_profession_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JPProfilBundle:Profession:delete" }
+    methods:  DELETE
