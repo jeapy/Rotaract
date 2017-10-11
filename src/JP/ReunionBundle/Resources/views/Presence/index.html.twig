@@ -28,15 +28,24 @@
                     
                       
                     </tr>
-                     {% for reunion in reunions  %}                         
+                     {% for reunion in reunions  %}      
+
+                     {% set Rdate = reunion.datereunion|date('YmdHi') %}
+                      {% set Ndate = 'now'|date('YmdHi') %}
+                      {% set RdateP = reunion.datereunion|date_modify("+1 hours")|date('YmdHi') %}                   
                     <tr>
                      
-                        {% if reunion.datereunion|date('d-M-Y H:i') > 'now'|date('d-M-Y H:i') %}                   
-                       <td>  <span class="label label-primary">{{ reunion.datereunion|date('d-M-Y H:i') }}  </span> </td>
-              {% elseif reunion.datereunion|date_modify("+3 hours")|date('d-M-Y H:i') < 'now'|date('d-M-Y H:i') %}           <td><span class="label label-danger">{{ reunion.datereunion|date('d-M-Y H:i') }}  </span></td>
-              {% else %}                   
-                       <td>  <span class="label label-success">{{ reunion.datereunion|date('d-M-Y H:i') }}  </span></td>
-              {% endif %}
+                      
+
+                        {% if Ndate  < Rdate  %}                 
+                            <td>  <span class="label label-primary">{{ reunion.datereunion|date('d-M-Y H:i') }}  </span> </td>
+                        {% elseif Ndate > RdateP  %}    
+                             <td><span class="label label-danger">{{ reunion.datereunion|date('d-M-Y H:i') }}  </span></td>
+                        {% else %}                   
+                            <td>  <span class="label label-success">{{ reunion.datereunion|date('d-M-Y H:i') }}  </span></td>
+                        {% endif %}
+
+
                       <td>{{ reunion.typereunion}}</td>
                       <td>{{ reunion.lieu}}</td>
                    

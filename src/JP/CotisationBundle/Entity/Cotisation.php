@@ -38,9 +38,9 @@ class Cotisation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datepaiement", type="datetime")
+     * @ORM\Column(name="datecreation", type="datetime")
      */
-    private $datepaiement;
+    private $datecreation;
 
 
     /**
@@ -51,8 +51,13 @@ class Cotisation
     public function getId()
     {
         return $this->id;
+         
     }
 
+ public function __construct()  {   
+     $this->datecreation = new \Datetime();
+ }
+ 
     /**
      * Set typecotisation
      *
@@ -102,27 +107,27 @@ class Cotisation
     }
 
     /**
-     * Set datepaiement
+     * Set datecreation
      *
-     * @param \DateTime $datepaiement
+     * @param \DateTime $datecreation
      *
      * @return Cotisation
      */
-    public function setDatepaiement($datepaiement)
+    public function setDatecreation($datecreation)
     {
-        $this->datepaiement = $datepaiement;
+        $this->datecreation = $datecreation;
 
         return $this;
     }
 
     /**
-     * Get datepaiement
+     * Get datecreation
      *
      * @return \DateTime
      */
-    public function getDatepaiement()
+    public function getDatecreation()
     {
-        return $this->datepaiement;
+        return $this->datecreation;
     }
 }
 

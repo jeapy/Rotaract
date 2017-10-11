@@ -6,8 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Presence
- *
- * @ORM\Table(name="presence")
+ * @ORM\Table(name="presence",indexes={@ORM\Index(name="my_unique_key", columns={"reunion_id", "profil_id"})} )
  * @ORM\Entity(repositoryClass="JP\MainBundle\Repository\PresenceRepository")
  */
 class Presence
@@ -28,7 +27,7 @@ class Presence
      */
     private $etat;
 
- /**
+    /**
     * @ORM\ManyToOne(targetEntity="JP\ReunionBundle\Entity\Reunion", cascade={"persist"},inversedBy="presence")
     * @ORM\JoinColumn(nullable=false)
     */

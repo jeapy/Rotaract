@@ -38,3 +38,13 @@ presence_show:
     path:     /presence/{id}/show
     defaults: { _controller: "JPReunionBundle:Reunion:presenceShow" }
     methods:  GET
+
+emargement:
+    path:     /presence/{id}/emargement
+    defaults: { _controller: "JPReunionBundle:Reunion:emargement" }
+    methods:  [GET, POST]
+
+emargementshow:
+    path:     /presence/{id}/{profil}/emargementshow
+    defaults: { _controller: "JPReunionBundle:Reunion:emargementShow" }
+    methods:  [GET, POST]

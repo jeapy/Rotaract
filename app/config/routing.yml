@@ -23,7 +23,7 @@ jp_main:
     prefix:   /
 
 jp_cotisation:
-    resource: "@JPCotisationBundle/Resources/config/routing.yml"
+    resource: "@JPCotisationBundle/Resources/config/routing/cotisation.yml"
     prefix:   /cotisation
 
 jp_reunion:
@@ -37,6 +37,22 @@ jp_profil:
 jp_user:
     resource: "@JPUserBundle/Resources/config/routing.yml"
     prefix:   /user
+
+jp_cotisation_paiement:
+    path:     /cotisation/paiement
+    defaults: { _controller: JPCotisationBundle:Default:indexPaiement }
+
+jp_cotisation_paiement_add:
+    path:     /cotisation/{id}/paiement
+    defaults: { _controller: JPCotisationBundle:Default:addPaiement }
+
+jp_cotisation_payer:
+    path:     /cotisation/{id}/payement
+    defaults: { _controller: JPCotisationBundle:Default:payement }
+
+jp_cotisation_paye:
+    path:     /cotisation/{id}/{profil}/payement
+    defaults: { _controller: JPCotisationBundle:Default:payementshow }
 
 app:
     resource: '@AppBundle/Controller/'

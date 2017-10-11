@@ -1,0 +1,24 @@
+cotisation_index:
+    path:     /
+    defaults: { _controller: "JPCotisationBundle:Cotisation:index" }
+    methods:  GET
+
+cotisation_show:
+    path:     /{id}/show
+    defaults: { _controller: "JPCotisationBundle:Cotisation:show" }
+    methods:  GET
+
+cotisation_new:
+    path:     /new
+    defaults: { _controller: "JPCotisationBundle:Cotisation:new" }
+    methods:  [GET, POST]
+
+cotisation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JPCotisationBundle:Cotisation:edit" }
+    methods:  [GET, POST]
+
+cotisation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JPCotisationBundle:Cotisation:delete" }
+    methods:  DELETE

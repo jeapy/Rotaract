@@ -1,0 +1,56 @@
+ {% extends "JPCotisationBundle:Default:index.html.twig" %}
+  {% block cotisation %} 
+
+
+           <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">CHOIX DE COTISATIONS</h3>
+                  <div class="box-tools">
+                                     
+                  </div>             
+                  
+                </div><!-- /.box-header -->
+
+                <div class="box-body table-responsive no-padding">
+                   <table class="table table-hover">
+                    <tr>
+                      <th>Type de cotisation</th>
+                            <th>Montant</th>
+                            <th>Date de creation</th>
+                            <th>Actions</th>
+                      
+                    </tr>
+                      {% for cotisation in cotisations %}
+            <tr>
+                
+                <td>{{ cotisation.typecotisation }}</td>
+                <td>{{ cotisation.montant }}</td>
+                <td>{% if cotisation.datecreation %}{{ cotisation.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{ path('jp_cotisation_paiement_add', { 'id': cotisation.id }) }}"><i class="fa fa-eye"></i></a>
+                     
+                </td>
+            </tr>
+        {% endfor %}
+                    
+                  </table>
+                </div><!-- /.box-body -->
+             
+
+
+                <div class="box-footer no-padding">
+                  <div class="Profil-controls">
+                    
+                    <a href="" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
+                    <div class="pull-right">
+                      1-50/200
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                      </div><!-- /.btn-group -->
+                    </div><!-- /.pull-right -->
+                  </div>
+                </div>
+              </div><!-- /. box -->      
+
+     {% endblock %}

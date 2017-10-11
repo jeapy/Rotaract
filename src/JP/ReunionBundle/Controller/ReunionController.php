@@ -13,6 +13,9 @@ use Doctrine\ORM\EntityRepository;
 
 
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -100,7 +103,7 @@ class ReunionController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('reunion_edit', array('id' => $reunion->getId()));
+            return $this->redirectToRoute('reunion_show', array('id' => $reunion->getId()));
         }
 
         return $this->render('JPReunionBundle:Reunion:edit.html.twig', array(
@@ -150,8 +153,6 @@ public function participerAction(Request $request , Reunion $reunion)
 
     $em = $this->getDoctrine()->getManager();
 
- 
-//======================================================================================
     $formBuilderM = $this->get('form.factory')->createBuilder(FormType::class,$reunion);
     $formBuilderM     
        ->add('profil', EntityType::class, array(
@@ -216,19 +217,106 @@ public function participerAction(Request $request , Reunion $reunion)
         ));
     }
 
-    public function presenceShowAction(Reunion $reunion)
+    public function presenceShowAction(Reunion $reunion )
     {   
-
-    
+  
  // On récupère maintenant la liste des AdvertSkill
     $em = $this->getDoctrine()->getManager();
 
-    $listPresences = $em->getRepository('JPMainBundle:Presence')->findBy(array('reunion' => $reunion));
+    $listPresences = $em->getRepository('JPMainBundle:Presence')->findByReunion(array('id' => $reunion));
 
         return $this->render('JPReunionBundle:Presence:show.html.twig', array(
             'reunion' => $reunion,
-            'listPresences' =>  $listPresences
+            'listPresences' =>  $listPresences,     
+        ));
+    }
+
+    public function emargementShowAction(Reunion $reunion , Profil $profil)
+    {   
+  
+ // On récupère maintenant la liste des AdvertSkill
+    $em = $this->getDoctrine()->getManager();
+
+     
+   $pform = $this->presenceForm($reunion);
+  
+
+    $listPresences = $em->getRepository('JPMainBundle:Presence')->findByReunion(array('id' => $reunion));
+
+        return $this->render('JPReunionBundle:Presence:emargementshow.html.twig', array(
+            'reunion'       => $reunion,
+            'profil'        => $profil,
+            'listPresences' =>  $listPresences,
+            'pform'         => $pform->createView()
+           
+
            
         ));
     }
+
+
+
+
+     public function emargementAction(Request $request, Reunion $reunion )
+    {
+      
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        $form = $this->presenceForm($reunion);
+
+        $form->handleRequest($request); 
+
+        if ($form->isSubmitted() && $form->isValid() ) {
+
+          $data = $form->getData();
+
+          $profil = $em->getRepository('JPProfilBundle:Profil')->find($data['profil']);
+           
+          $profils = $em->getRepository('JPProfilBundle:Profil')->findProfilByCode($data['profil'],$data['code']);
+                  
+                  if($profils){
+                        $presence = new Presence();
+
+                        $presence->setProfil($profil);
+                        $presence->setReunion($reunion);
+                        $presence->setEtat($data['etat']); 
+                       
+                        $em->persist($presence);          
+                        $em->flush();
+
+                  }else{
+                    $request->getSession()->getFlashBag()->add('notice', 'Votre "code" est erroné');
+                    }
+            
+       }
+      return $this->redirectToRoute('presence_show' , array('id' => $reunion->getId()));
+           
+        
+       
+    }
+
+
+    private function presenceForm(Reunion $reunion)
+    {
+        return $this->createFormBuilder()
+            ->add('etat',ChoiceType::class, array(
+                'choices' => array('PRESENT' => 1,
+                                  'ABSENT' => 0                                  
+                                 ),
+                      
+                 'required' => true,
+                 'expanded' => true
+                 ))
+        
+            ->add('profil',  TextType::class)
+             ->add('code',  TextType::class)
+            
+            ->setAction($this->generateUrl('emargement', array('id' =>$reunion->getId())))
+            ->getForm()
+        ;
+    }
+
+    
 }

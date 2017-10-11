@@ -1,0 +1,41 @@
+{% extends "JPReunionBundle:Presence:show.html.twig" %}
+  {% block emargement %}  
+                        
+                     <li>
+                    <!-- timeline icon -->
+                    <i class="fa fa-users bg-orange"></i>
+
+                     <div class="timeline-item">
+                          <div class="box-header with-border">
+                                
+                              </div>
+                               <div class="box-body">
+                                         <div class="row">
+                                          <div class="col-xs-12">
+                                                
+                                          {{ form_start(pform) }}  
+
+                                               <div class="form-group">                                        
+                                                 {{ form_widget(pform.etat) }}
+                                                  </div>
+                                                   <div class="form-group">  
+                                                 {{ form_widget(pform.code,{'attr': {'placeholder' : 'code'}}) }} </div>
+                                                  {{ form_widget(pform.profil, {'value': profil.id}) }}
+
+
+
+                                                 
+                                              <input type="submit" value="Valider" class="btn btn-success btn-xs"/> 
+                                                     {{ form_end(pform) }}
+                                            </div>                                   
+                                </div>
+                              
+                              </div>
+
+                      </div><!-- /.nav-tabs-custom -->
+            
+                 </li>
+              
+                  
+      
+        {% endblock %}

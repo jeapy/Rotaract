@@ -160,31 +160,31 @@
           </div><!-- /.col -->
 
          <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-               Supperssion de profil #{{profil.id}}
-            </div>
-            <div class="modal-body">
-               Cette Action est irreversible ,Voulez vous vraiment supprimer le profil ?
-            </div>
-            <div class="modal-footer">
-
-                <div class="row">
-                        <div class="col-xs-6 text-left">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                         </div>
-                        <div class="col-xs-6">
-                             {{ form_start(delete_form) }}
-                              <input type="submit" class="btn btn-danger" value="Delete">
-                             {{ form_end(delete_form) }}
-                       </div>
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                     Supperssion de profil #{{profil.id}}
                   </div>
-                
-            </div>
+                  <div class="modal-body">
+                     Cette Action est irreversible ,Voulez vous vraiment supprimer le profil ?
+                  </div>
+                  <div class="modal-footer">
+
+                      <div class="row">
+                              <div class="col-xs-6 text-left">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                               </div>
+                              <div class="col-xs-6">
+                                   {{ form_start(delete_form) }}
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                   {{ form_end(delete_form) }}
+                             </div>
+                        </div>
+                      
+                  </div>
+              </div>
+          </div>
         </div>
-    </div>
-</div>
 
     {% endblock %}
 

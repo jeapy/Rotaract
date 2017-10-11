@@ -21,7 +21,7 @@ class AppKernel extends Kernel
             new JP\ProfilBundle\JPProfilBundle(),
             new JP\ReunionBundle\JPReunionBundle(),
             new JP\CotisationBundle\JPCotisationBundle(),
-             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new JP\MainBundle\JPMainBundle(),
             new JP\ConfigurationBundle\JPConfigurationBundle(),
         ];

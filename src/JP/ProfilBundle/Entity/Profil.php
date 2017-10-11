@@ -146,11 +146,7 @@ class Profil
     */
    private $conjoint;
 
-    /**
-    * @ORM\ManyToOne(targetEntity="JP\CotisationBundle\Entity\Cotisation", cascade={"persist"})
-    * 
-    */
-   private $cotisation;
+   
 
    /**
     * @ORM\ManyToMany(targetEntity="JP\ReunionBundle\Entity\Reunion", cascade={"persist"} ,mappedBy="profil")
@@ -842,31 +838,7 @@ class Profil
         return $this->numero;
     }
 
-    /**
-     * Set cotisation
-     *
-     * @param \JP\CotisationBundle\Entity\Cotisation $cotisation
-     *
-     * @return Profil
-     */
-    public function setCotisation(\JP\CotisationBundle\Entity\Cotisation $cotisation = null)
-    {
-        $this->cotisation = $cotisation;
-
-        return $this;
-    }
-
-
-    /**
-     * Get cotisation
-     *
-     * @return \JP\CotisationBundle\Entity\Cotisation
-     */
-    public function getCotisation()
-    {
-        return $this->cotisation;
-    }
-
+    
 
      /**
      * Add presence

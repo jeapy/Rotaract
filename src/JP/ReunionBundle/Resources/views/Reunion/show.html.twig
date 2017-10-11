@@ -52,7 +52,18 @@
                         </div>
 
                         <div class="timeline-footer text-right">
-                            <a href="{{ path('reunion_edit',{'id': reunion.id})}}" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Modifier </a>
+
+
+
+                           {% if Ndate  < Rdate  %}                 
+                              <a href="{{ path('reunion_edit',{'id': reunion.id})}}" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Modifier </a>
+                          {% elseif Ndate > RdateP  %}    
+                             
+                          {% else %}                   
+                             
+                          {% endif %}
+
+                           
                             
                             
                            

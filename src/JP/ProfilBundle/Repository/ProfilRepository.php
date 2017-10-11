@@ -63,5 +63,24 @@ public function CountMemberProfil($idA,$idB)
 		}
 
 
+public function findProfilByCode($idA,$idB)
+		{
+
+		  $qb = $this->createQueryBuilder('b')
+		  	;
+		  $qb
+		    ->Where('b.id = :idA')
+		    	 ->setParameter('idA', $idA)
+		    ->andWhere('b.code = :idB ')		   
+		  		  ->setParameter('idB', $idB)
+		  	;
+		  return $qb
+				    ->getQuery()
+				    ->getResult()
+		  	;
+
+		}
+
+
 		
 }
